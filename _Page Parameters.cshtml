@@ -9,21 +9,41 @@
       <a href="@Link.To()">No params in url</a>
     </li>
     <li>
-      <a href="?value1=27&value2=27&name=iJungleboy">Add params to url</a>
+      <a href='@Link.To(parameters: "value1=27&value2=27&name=iJungleboy")'>Add params to url</a>
     </li>
   </ol>
 
   <hr>
+  <h2>Tests</h2>
   @{
     var p = CmsContext.Page.Parameters;
   }
 
-  Param count: @p.Count() <br>
+  <ol>
+    <li>
+      Param count: @p.Count()
+    </li>
+    <li>
+      Url: @p.ToString()
+    </li>
+    <li>
+      Params added: @p.Add("added", "42").ToString()
+    </li>
+    <li>
+      Params removed: @p.Remove("name").ToString()
+    </li>
+    <li>
+      In Link: @Link.To(parameters: CmsContext.Page.Parameters)
+    </li>
+    <li>
+      In Link with More Params: @Link.To(parameters: CmsContext.Page.Parameters.Add("added", "42"))
+    </li>
+    <li>
+        In link with removed params: @Link.To(parameters: CmsContext.Page.Parameters.Remove("Name"))
+    </li>
+  </ol>
 
-  Url: @p.ToString() <br>
 
-  In Link: @Link.To(parameters: CmsContext.Page.Parameters)
 
-  In Link with More Params: @Link.To(parameters: CmsContext.Page.Parameters.Add("added", "42"))
 
 </div>
