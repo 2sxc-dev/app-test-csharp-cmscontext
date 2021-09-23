@@ -1,0 +1,29 @@
+@inherits Custom.Hybrid.Razor12
+
+<div @Edit.TagToolbar(Content)>
+  <p>
+    Note: run tests here, or use the admin-dialog to verify behavior in WebAPIs
+  </p>
+  <ol>
+    <li>
+      <a href="@Link.To()">No params in url</a>
+    </li>
+    <li>
+      <a href="?value1=27&value2=27&name=iJungleboy">Add params to url</a>
+    </li>
+  </ol>
+
+  <hr>
+  @{
+    var p = CmsContext.Page.Parameters;
+  }
+
+  Param count: @p.Count() <br>
+
+  Url: @p.ToString() <br>
+
+  In Link: @Link.To(parameters: CmsContext.Page.Parameters)
+
+  In Link with More Params: @Link.To(parameters: CmsContext.Page.Parameters.Add("added", "42"))
+
+</div>
